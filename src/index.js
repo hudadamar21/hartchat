@@ -3,11 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Auth0Provider } from "@auth0/auth0-react";
+import { RecoilRoot } from 'recoil';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Auth0Provider
+    domain={process.env.REACT_APP_AUTH_DOMAIN}
+    clientId={process.env.REACT_APP_AUTH_CLIENTID}
+    redirectUri={process.env.REACT_APP_BASE_URL}
+    scope="read:current_user update:current_user_metadata"
+  >
+    <RecoilRoot>
+      <App />
+    </RecoilRoot>
+  </Auth0Provider>,
   document.getElementById('root')
 );
 

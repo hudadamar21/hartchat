@@ -64,7 +64,7 @@ const Message = () => {
   }, 200);
 
   return (
-    <div id="chat-content">
+    <div id="chat-content" style={{ paddingBottom: '30px'}}>
       {
         data?.messages.map((message, index) => {
           return (

@@ -1,5 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
-import { TextField } from "@material-ui/core";
+import { IconButton, TextField } from "@material-ui/core";
+import SendIcon from '@material-ui/icons/Send';
 import { gql, useMutation } from "@apollo/client";
 import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -26,9 +27,11 @@ const INSERT_MESSAGE = gql`
 
 const useStyles = makeStyles(() => ({
   messageForm: {
-    overflow: "hidden",
-    margin: "20px",
-    padding: "0",
+    display: 'flex',
+    alignItems: 'center',
+    background: 'white  ',
+    justifyContent: 'end',
+    padding: '8px 15px'
   },
 }));
 
@@ -37,6 +40,7 @@ const MessageForm = () => {
   const {user} = useAuth0()
   const [message, setMessage] = useState('')
   const [selectedUser] = useRecoilState(selectedUserState)
+  const [isError, setIsError] = useState(false) 
   const [insertMessage] = useMutation(INSERT_MESSAGE, {
     variables: {
       toUserId: selectedUser?.id,
@@ -47,21 +51,34 @@ const MessageForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    insertMessage()
-    setMessage('')
+    if(message){
+      insertMessage()
+      setMessage('')
+    } else {
+      setIsError(true)
+      setTimeout(() => {
+        setIsError(false)
+      }, 1000);
+    }
   }
 
   return (
     <form className={classes.messageForm} noValidate autoComplete="off" onSubmit={handleSubmit}>  
       <TextField
         id="input-message"
-        variant="outlined"
-        placeholder="type your message..."
+        placeholder={isError ? 'message is required' : 'type your message...'}
         fullWidth={true}
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        style={{ background: "#fff" }}
+        style={{
+          '::placeholder': {
+            color: '#ff4137'
+          }
+        }}
       />
+      <IconButton style={{cursor: 'pointer', color: '#3C99DC'}} onClick={handleSubmit} >
+        <SendIcon color="inherit" />
+      </IconButton>
     </form>
   )
 }

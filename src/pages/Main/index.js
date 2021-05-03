@@ -32,8 +32,8 @@ const useStyles = makeStyles((theme) => ({
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
-    background: "#f5f5f5",
-    color: "rgba(0,0,0,.87)",
+    background: "#3C99DC",
+    color: "white",
     boxShadow: "unset",
     borderBottom: "1px solid rgba(0,0,0,.12)",
   },
@@ -49,31 +49,27 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
   },
   content: {
-    flexGrow: 1,
-    padding: theme.spacing(2),
+    position: 'relative',
+    width: '100%',
     display: "flex",
-    marginTop: "40px",
-    flexWrap: "wrap",
-    height: "100%",
+    flexDirection: 'column',
+    height: "100vh",
+    background: '#E5F3FE',
   },
   chatFooter: {
-    flexBasis: "100%",
-    height: "100px",
-    background: "#f6f6f6",
-    borderRadius: "15px",
+    position: 'absolute',
+    bottom: '0',
+    left: '0',
+    width: '100%',
+    background: "white",
   },
   chatContent: {
     width: "100%",
-    height: "calc(100% - 100px)",
-    paddingLeft: theme.spacing(4),
+    height: '100%',
+    paddingLeft: theme.spacing(6),
     overflowY: "scroll",
-    overflowX: 'hidden'
-  },
-  messageForm: {
-    overflow: "hidden",
-    margin: "20px",
-    padding: "0",
-  },
+    overflowX: 'hidden',
+  }
 }));
 
 const Main = (props) => {
@@ -88,8 +84,19 @@ const Main = (props) => {
   };
 
   const drawer = (
-    <div>
-      <div className={classes.toolbar} />
+    <div >
+      <div className={classes.toolbar} style={{
+        fontWeight: 'bold',
+        display: 'flex',
+        alignItems: 'center',
+        fontSize: '1.8rem',
+        color: '#3C99DC',
+        paddingLeft: '1.5rem',
+        borderBottom: '1px solid rgba(0,0,0,0.1)',
+        letterSpacing: '2px'
+      }}>
+        HartChat
+      </div>
       <Contact/>
     </div>
   );
@@ -151,7 +158,8 @@ const Main = (props) => {
         <div className={classes.chatContent}>
           <Message></Message>
         </div>
-
+          
+        <div className={classes.toolbar} />
         <div className={classes.chatFooter}>
           <MessageForm></MessageForm>
         </div>

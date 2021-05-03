@@ -1,6 +1,5 @@
 import { gql, useQuery } from "@apollo/client"
 import { useAuth0 } from "@auth0/auth0-react"
-import { Divider } from "@material-ui/core" 
 import { useRecoilState } from "recoil"
 import ContactList from "../../../components/ContactList"
 import { selectedUserState } from "../../../recoil"
@@ -29,7 +28,7 @@ const Contact = () => {
 
   const setSelectedUser = useRecoilState(selectedUserState)[1]
 
-  const users = [{id: null, name: "LOBI"}]
+  const users = [{id: null, name: "CHAT ALL", picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYBxnZ_Ok60YzJ-g_mQdly0gUOYyffbR9Xqw&usqp=CAU'}]
   
   if(data && data.users){
     users.push(...data.users)
@@ -41,7 +40,6 @@ const Contact = () => {
         return (
           <div key={user.id} onClick={() => setSelectedUser(user)}>
             <ContactList user={user}></ContactList>
-            <Divider></Divider>
           </div>
         )
       })}

@@ -12,8 +12,6 @@ import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
 import { setContext } from "@apollo/client/link/context";
 import { Button, CircularProgress } from '@material-ui/core';
-
-import logo from './logo.svg';
 import './App.css';
 
 import Main from './pages/Main';
@@ -83,16 +81,19 @@ function App() {
           : (
             <div className="App">
               <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
+               <h1>HARTCHAT</h1>
                 <Button
-                  className="App-link"
+                  style={{
+                    color: 'black',
+                    background: 'white'
+                  }}
                   onClick={() => loginWithRedirect()}
                   target="_blank"
                   rel="noopener noreferrer"
                   variant="contianed" 
                   color="primary"
                 > 
-                  Login
+                  Login / Register
                 </Button>
               </header>
             </div>

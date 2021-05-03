@@ -28,7 +28,7 @@ const Contact = () => {
 
   const setSelectedUser = useRecoilState(selectedUserState)[1]
 
-  const users = [{id: null, name: "CHAT ALL", picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYBxnZ_Ok60YzJ-g_mQdly0gUOYyffbR9Xqw&usqp=CAU'}]
+  const users = [{id: null, name: "LOBI", picture: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYBxnZ_Ok60YzJ-g_mQdly0gUOYyffbR9Xqw&usqp=CAU'}]
   
   if(data && data.users){
     users.push(...data.users)

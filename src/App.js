@@ -27,7 +27,14 @@ function App() {
   })
 
   if(isLoading){
-    return <CircularProgress/>
+    return (
+      <div className="loading-container">
+        <div className="loading">
+          <CircularProgress/>
+          <p>memuat chat...</p>
+        </div>
+      </div>
+    )
   }
 
   const wsLink = new WebSocketLink({
